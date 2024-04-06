@@ -3,9 +3,9 @@ package com.eliehome.EmployeeInformation.controller;
 import com.eliehome.EmployeeInformation.model.Employee;
 import com.eliehome.EmployeeInformation.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 
@@ -17,4 +17,9 @@ public class EmployeeController {
         return employeeService.saveEmployee(employee);
 
     }
+    @GetMapping("/employees")
+    public List<Employee> getEmployeeList() {
+        return employeeService.listOfEmployees();
+    }
+
 }
