@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 
@@ -19,12 +18,13 @@ public class EmployeeController {
 
     }
     @GetMapping("/employees")
-    public List<Employee> getEmployeeList() {
-        return employeeService.listOfEmployees();
+    public List<Employee> fetchEmployeeList() {
+
+        return employeeService.fetchEmployeeList();
     }
     @GetMapping("/employees/{id}")
-    public Employee getEmployeeById(@PathVariable("id") Long employee_Id){
-            return employeeService.getEmployeeById(employee_Id);
+    public Employee fetchEmployeeById(@PathVariable("id") Long employee_Id){
+            return employeeService.fetchEmployeeById(employee_Id);
     }
 
     @DeleteMapping("/employees/{id}")
@@ -33,11 +33,10 @@ public class EmployeeController {
          return "Employee Deleted Successfully!!";
 
     }
+@PutMapping("/employees/{id}")
+    public Employee updateEmployee(@PathVariable("id") Long employeeId, @RequestBody Employee employee){
+        return employeeService.updateEmployee(employeeId, employee);
 
-//    @PutMapping("/employees/{id}")
-//    public Employee updateEmployeeById(@PathVariable("id") Long employee_Id, @RequestBody Employee employee){
-//        return employeeService.updateEmployeeById(employee_Id, employee);
-//
-//    }
+    }
 
 }
