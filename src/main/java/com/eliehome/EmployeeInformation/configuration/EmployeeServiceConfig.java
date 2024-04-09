@@ -4,10 +4,11 @@ import com.eliehome.EmployeeInformation.model.Employee;
 import com.eliehome.EmployeeInformation.repository.EmployeeRepository;
 import com.eliehome.EmployeeInformation.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -20,37 +21,20 @@ public class EmployeeServiceConfig implements EmployeeService {
     }
 
     @Override
-    public List<Employee> listOfEmployees() {
+    public List<Employee> fetchEmployeeList() {
         return employeeRepository.findAll();
     }
 
     @Override
-    public Employee getEmployeeById(Long employeeId) {
+    public Employee fetchEmployeeById(Long employeeId) {
+
         return employeeRepository.findById(employeeId).get();
     }
 
     @Override
-    public void deleteEmployeeById(Long employeeId) {
-        employeeRepository.deleteById(employeeId);
+    public void deleteEmployeeById(Long employeeId) {employeeRepository.deleteById(employeeId);
     }
 
 
-//    @Override
-//    public Employee updateEmployeeById(Long employeeId, Employee employee) {
-//        Employee empDB = employeeRepository.findById(employeeId).get();
-//        if(Objects.nonNull(employee.getEmployeeName()) &&
-//        !"".equalsIgnoreCase(employee.getEmployeeName())){
-//            empDB.setEmployeeName(employee.getEmployeeName());
-//        }
-//        if(Objects.nonNull(employee.getEmployeeDepartment()) &&
-//                !"".equalsIgnoreCase(employee.getEmployeeDepartment())){
-//            empDB.setEmployeeDepartment(employee.getEmployeeDepartment());
-//        }
-//        if(Objects.nonNull(employee.getEmployeePhoneNumber()) &&
-//                !"".equalsIgnoreCase(employee.getEmployeePhoneNumber())){
-//            empDB.setEmployeePhoneNumber(employee.getEmployeePhoneNumber());
-//        }
-//        return employeeRepository.save(empDB);
-//    }
 
 }
