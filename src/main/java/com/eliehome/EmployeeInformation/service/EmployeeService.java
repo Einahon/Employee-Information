@@ -1,5 +1,6 @@
 package com.eliehome.EmployeeInformation.service;
 
+import com.eliehome.EmployeeInformation.error.EmployeeNotFoundException;
 import com.eliehome.EmployeeInformation.model.Employee;
 import org.springframework.http.ResponseEntity;
 
@@ -10,7 +11,7 @@ public interface EmployeeService {
 
   public List<Employee> fetchEmployeeList();
 
-   public Employee fetchEmployeeById(Long employeeId);
+   public Employee fetchEmployeeById(Long employeeId) throws EmployeeNotFoundException;
 
    public void deleteEmployeeById(Long employeeId);
 
