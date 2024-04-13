@@ -1,4 +1,4 @@
-package com.eliehome.EmployeeInformation.configuration;
+package com.eliehome.EmployeeInformation.service.configuration;
 
 import com.eliehome.EmployeeInformation.model.Employee;
 import com.eliehome.EmployeeInformation.repository.EmployeeRepository;
