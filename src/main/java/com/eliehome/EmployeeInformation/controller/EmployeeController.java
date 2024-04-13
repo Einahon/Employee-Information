@@ -1,5 +1,6 @@
 package com.eliehome.EmployeeInformation.controller;
 
+import com.eliehome.EmployeeInformation.error.EmployeeNotFoundException;
 import com.eliehome.EmployeeInformation.model.Employee;
 import com.eliehome.EmployeeInformation.service.EmployeeService;
 import jakarta.validation.Valid;
@@ -30,7 +31,7 @@ public class EmployeeController {
         return employeeService.fetchEmployeeList();
     }
     @GetMapping("/employees/{id}")
-    public Employee fetchEmployeeById(@PathVariable("id") Long employee_Id){
+    public Employee fetchEmployeeById(@PathVariable("id") Long employee_Id) throws EmployeeNotFoundException {
         LOGGER.info("Inside fetchEmployeeById of EmployeeController ");
             return employeeService.fetchEmployeeById(employee_Id);
     }
