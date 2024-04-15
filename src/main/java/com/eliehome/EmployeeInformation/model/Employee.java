@@ -20,7 +20,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long employee_Id;
-    @NotBlank(message = "Please add Employee Name")
+    @NotBlank
     public String employeeName;
     public String employeePhoneNumber;
     public String employeeDepartment;
