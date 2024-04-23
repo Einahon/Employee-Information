@@ -19,11 +19,11 @@ import lombok.NoArgsConstructor;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long employee_Id;
-    @NotBlank
-    public String employeeName;
-    public String employeePhoneNumber;
-    public String employeeDepartment;
+    private Long employeeId;
+    @NotBlank(message = "Please add Employee Name")
+    private String employeeName;
+    private String employeePhoneNumber;
+    private String employeeDepartment;
 
 
 
