@@ -14,6 +14,7 @@ import java.util.Optional;
 public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
+
     @Override
     public Employee saveEmployee(Employee employee) {
         return employeeRepository.save(employee);
@@ -29,16 +30,27 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         Optional<Employee> employee = employeeRepository.findById(employeeId);
 
-        if(!employee.isPresent()){
+        if (!employee.isPresent()) {
             throw new EmployeeNotFoundException("Employee Not Available");
         }
         return employee.get();
     }
 
     @Override
-    public void deleteEmployeeById(Long employeeId) {employeeRepository.deleteById(employeeId);
+    public void deleteEmployeeById(Long employeeId) {
+        employeeRepository.deleteById(employeeId);
     }
 
-
-
+    @Override
+    public Employee updateEmployee(Long employeeId, Employee employee)  {
+        Employee employee1 = employeeRepository.findById(employeeId).get();
+       String name = employee.getEmployeeName();
+        employee1.setEmployeeName(name);
+        return employeeRepository.save(employee1);
+    }
 }
+
+
+
+
+
