@@ -3,15 +3,14 @@ package com.eliehome.EmployeeInformation.controller;
 import com.eliehome.EmployeeInformation.error.EmployeeNotFoundException;
 import com.eliehome.EmployeeInformation.model.Employee;
 import com.eliehome.EmployeeInformation.service.EmployeeService;
-import com.fasterxml.jackson.databind.annotation.JsonValueInstantiator;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 
@@ -32,17 +31,19 @@ public class EmployeeController {
         return employeeService.fetchEmployeeList();
     }
     @GetMapping("/employees/{id}")
-    public Employee fetchEmployeeById(@PathVariable("id") Long employee_Id) throws EmployeeNotFoundException {
+    public Employee fetchEmployeeById(@PathVariable("id") Long employeeId) throws EmployeeNotFoundException {
         LOGGER.info("Inside fetchEmployeeById of EmployeeController ");
-            return employeeService.fetchEmployeeById(employee_Id);
+            return employeeService.fetchEmployeeById(employeeId);
     }
-
     @DeleteMapping("/employees/{id}")
-    public String deleteEmployeeById(@PathVariable("id") Long employee_Id){
+    public String deleteEmployeeById(@PathVariable("id") Long employeeId){
         LOGGER.info("Inside deleteEmployeeById of EmployeeController ");
-         employeeService.deleteEmployeeById(employee_Id);
+         employeeService.deleteEmployeeById(employeeId);
          return "Employee Deleted Successfully!!";
-
+    }
+    @PutMapping("/employees/{id}")
+    public Employee updateEmployee(@PathVariable("id") Long employeeId, @RequestBody Employee employee){
+        return employeeService.updateEmployee(employeeId, employee);
     }
 
 
