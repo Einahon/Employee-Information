@@ -27,9 +27,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee fetchEmployeeById(Long employeeId) throws EmployeeNotFoundException {
-
         Optional<Employee> employee = employeeRepository.findById(employeeId);
-
         if (!employee.isPresent()) {
             throw new EmployeeNotFoundException("Employee Not Available");
         }
