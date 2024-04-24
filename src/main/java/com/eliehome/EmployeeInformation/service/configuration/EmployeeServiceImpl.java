@@ -35,7 +35,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return employee.get();
     }
-
     @Override
     public void deleteEmployeeById(Long employeeId) {
         employeeRepository.deleteById(employeeId);
@@ -44,8 +43,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee updateEmployee(Long employeeId, Employee employee)  {
         Employee employee1 = employeeRepository.findById(employeeId).get();
-       String name = employee.getEmployeeName();
-        employee1.setEmployeeName(name);
+        if(employee.getEmployeeDepartment()!= null){
+            employee1.setEmployeeDepartment(employee.getEmployeeDepartment());
+        }
+        if(employee.getEmployeeName()!= null) {
+            employee1.setEmployeeName(employee.getEmployeeName());
+        }
+        if(employee.getEmployeePhoneNumber()!= null){
+            employee1.setEmployeePhoneNumber(employee.getEmployeePhoneNumber());
+        }
         return employeeRepository.save(employee1);
     }
 }
