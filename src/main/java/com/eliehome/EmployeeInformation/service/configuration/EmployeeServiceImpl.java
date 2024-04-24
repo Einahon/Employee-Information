@@ -54,6 +54,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return employeeRepository.save(employee1);
     }
+
+    @Override
+    public Employee fetchByEmployeeName(String employeeName) {
+        return employeeRepository.findByEmployeeNameIgnoreCase(employeeName);
+    }
 }
 
 
