@@ -17,7 +17,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee saveEmployee(Employee employee) {
-        return employeeRepository.save(employee);
+        return    employeeRepository.save(employee);
     }
 
     @Override
@@ -34,7 +34,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee.get();
     }
     @Override
-    public void deleteEmployeeById(Long employeeId) {
+    public void deleteEmployeeById(Long employeeId) throws EmployeeNotFoundException {
+        if(!employeeRepository.existsById(employeeId)) {
+            throw new EmployeeNotFoundException("Employee does not exist");
+        }
         employeeRepository.deleteById(employeeId);
     }
 

@@ -13,7 +13,7 @@ public interface EmployeeService {
 
    public Employee fetchEmployeeById(Long employeeId) throws EmployeeNotFoundException;
 
-   public void deleteEmployeeById(Long employeeId);
+   public void deleteEmployeeById(Long employeeId) throws EmployeeNotFoundException;
 
 
    public Employee updateEmployee(Long employeeId, Employee employee);
