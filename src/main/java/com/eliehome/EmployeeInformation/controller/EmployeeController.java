@@ -42,7 +42,7 @@ public class EmployeeController {
          return "Employee Deleted Successfully!!";
     }
     @PutMapping("/employees/{id}")
-    public Employee updateEmployee(@PathVariable("id") Long employeeId, @RequestBody Employee employee){
+    public Employee updateEmployee(@PathVariable("id") Long employeeId, @RequestBody Employee employee) throws EmployeeNotFoundException {
         return employeeService.updateEmployee(employeeId, employee);
     }
     @GetMapping("/employees/name/{name}")

@@ -42,17 +42,19 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee updateEmployee(Long employeeId, Employee employee)  {
+    public Employee updateEmployee(Long employeeId, Employee employee) throws EmployeeNotFoundException {
         Employee employee1 = employeeRepository.findById(employeeId).get();
         if(employee.getEmployeeDepartment()!= null){
             employee1.setEmployeeDepartment(employee.getEmployeeDepartment());
         }
         if(employee.getEmployeeName()!= null) {
             employee1.setEmployeeName(employee.getEmployeeName());
-        }
+        } else
+        throw new EmployeeNotFoundException("Employee Name must not be empty");
         if(employee.getEmployeePhoneNumber()!= null){
             employee1.setEmployeePhoneNumber(employee.getEmployeePhoneNumber());
         }
+
         return employeeRepository.save(employee1);
     }
 
