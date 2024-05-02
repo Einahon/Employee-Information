@@ -36,31 +36,38 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void deleteEmployeeById(Long employeeId) throws EmployeeNotFoundException {
         if(!employeeRepository.existsById(employeeId)) {
-            throw new EmployeeNotFoundException("Employee does not exist");
+            throw new EmployeeNotFoundException("Employee not found with id: "+ employeeId);
         }
         employeeRepository.deleteById(employeeId);
     }
 
     @Override
     public Employee updateEmployee(Long employeeId, Employee employee) throws EmployeeNotFoundException {
-        Employee employee1 = employeeRepository.findById(employeeId).get();
-        if(employee.getEmployeeDepartment()!= null){
-            employee1.setEmployeeDepartment(employee.getEmployeeDepartment());
-        }
-        if(employee.getEmployeeName()!= null) {
-            employee1.setEmployeeName(employee.getEmployeeName());
-        } else
-        throw new EmployeeNotFoundException("Employee Name must not be empty");
-        if(employee.getEmployeePhoneNumber()!= null){
-            employee1.setEmployeePhoneNumber(employee.getEmployeePhoneNumber());
-        }
+        Employee employee1 = employeeRepository.findById(employeeId).orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: "+ employeeId));
+        ;
+
+            if (employee.getEmployeeDepartment() != null) {
+                employee1.setEmployeeDepartment(employee.getEmployeeDepartment());
+            }
+            if (employee.getEmployeeName() != null) {
+                employee1.setEmployeeName(employee.getEmployeeName());
+            } else
+                throw new EmployeeNotFoundException("Employee Name must not be empty");
+            if (employee.getEmployeePhoneNumber() != null) {
+                employee1.setEmployeePhoneNumber(employee.getEmployeePhoneNumber());
+            }
+
 
         return employeeRepository.save(employee1);
     }
 
     @Override
-    public Employee fetchByEmployeeName(String employeeName) {
-        return employeeRepository.findByEmployeeNameIgnoreCase(employeeName);
+    public Employee fetchByEmployeeName(String employeeName) throws EmployeeNotFoundException {
+        Employee employee = employeeRepository.findByEmployeeNameIgnoreCase(employeeName);
+        if(employee == null){
+            throw new EmployeeNotFoundException("Employee Not Available");
+        }
+        return employee;
     }
 }
 
