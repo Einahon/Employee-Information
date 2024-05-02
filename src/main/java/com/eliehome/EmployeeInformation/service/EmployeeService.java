@@ -18,5 +18,5 @@ public interface EmployeeService {
 
    public Employee updateEmployee(Long employeeId, Employee employee) throws EmployeeNotFoundException;
 
-   public Employee fetchByEmployeeName(String employeeName);
+   public Employee fetchByEmployeeName(String employeeName) throws EmployeeNotFoundException;
 }
