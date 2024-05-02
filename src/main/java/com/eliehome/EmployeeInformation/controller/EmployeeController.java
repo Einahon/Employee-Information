@@ -7,6 +7,9 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +22,8 @@ public class EmployeeController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(EmployeeController.class);
     @PostMapping("/employees")
-    public Employee saveEmployee(@Valid @RequestBody Employee employee){
+    @ResponseStatus(HttpStatus.CREATED)
+    public Employee saveEmployee(@Valid @RequestBody Employee employee) {
         LOGGER.info("Inside saveEmployee of EmployeeController");
         return employeeService.saveEmployee(employee);
 
@@ -35,13 +39,14 @@ public class EmployeeController {
             return employeeService.fetchEmployeeById(employeeId);
     }
     @DeleteMapping("/employees/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public String deleteEmployeeById(@PathVariable("id") Long employeeId) throws EmployeeNotFoundException {
         LOGGER.info("Inside deleteEmployeeById of EmployeeController ");
          employeeService.deleteEmployeeById(employeeId);
          return "Employee Deleted Successfully!!";
     }
     @PutMapping("/employees/{id}")
-    public Employee updateEmployee(@PathVariable("id") Long employeeId, @RequestBody Employee employee) throws EmployeeNotFoundException {
+    public Employee updateEmployee(@PathVariable("id") Long employeeId,@Valid @RequestBody Employee employee) throws EmployeeNotFoundException {
         return employeeService.updateEmployee(employeeId, employee);
     }
     @GetMapping("/employees/name/{name}")
@@ -49,4 +54,6 @@ public class EmployeeController {
         return employeeService.fetchByEmployeeName(employeeName);
 
     }
-}
+
+    }
+

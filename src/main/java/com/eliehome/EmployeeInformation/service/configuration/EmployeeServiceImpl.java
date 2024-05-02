@@ -6,7 +6,6 @@ import com.eliehome.EmployeeInformation.repository.EmployeeRepository;
 import com.eliehome.EmployeeInformation.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -19,12 +18,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee saveEmployee(Employee employee) {
         return    employeeRepository.save(employee);
     }
-
     @Override
     public List<Employee> fetchEmployeeList() {
         return employeeRepository.findAll();
     }
-
     @Override
     public Employee fetchEmployeeById(Long employeeId) throws EmployeeNotFoundException {
         Optional<Employee> employee = employeeRepository.findById(employeeId);
@@ -44,7 +41,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee updateEmployee(Long employeeId, Employee employee) throws EmployeeNotFoundException {
         Employee employee1 = employeeRepository.findById(employeeId).orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: "+ employeeId));
-        ;
 
             if (employee.getEmployeeDepartment() != null) {
                 employee1.setEmployeeDepartment(employee.getEmployeeDepartment());
@@ -56,8 +52,6 @@ public class EmployeeServiceImpl implements EmployeeService {
             if (employee.getEmployeePhoneNumber() != null) {
                 employee1.setEmployeePhoneNumber(employee.getEmployeePhoneNumber());
             }
-
-
         return employeeRepository.save(employee1);
     }
 
