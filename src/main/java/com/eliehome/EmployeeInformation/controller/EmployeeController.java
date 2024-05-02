@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -46,7 +45,7 @@ public class EmployeeController {
         return employeeService.updateEmployee(employeeId, employee);
     }
     @GetMapping("/employees/name/{name}")
-    public Employee fetchByEmployeeName(@PathVariable("name") String employeeName){
+    public Employee fetchByEmployeeName(@PathVariable("name") String employeeName) throws EmployeeNotFoundException {
         return employeeService.fetchByEmployeeName(employeeName);
 
     }
