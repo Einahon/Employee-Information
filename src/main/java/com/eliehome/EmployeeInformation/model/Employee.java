@@ -24,9 +24,8 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long employeeId;
     @Valid
-    @NotBlank(message="Please add Employee Name")
-    @NotNull(message = "Please Add Employee Name" )
-    @Length(max = 100, min = 1, message = "Must be of 1 - 100 characters")
+    @NotBlank(message = "Please add name")
+    @NotNull(message = "Please add name")
     private String employeeName;
     @Length(max = 12, min = 8, message = "Must be of 8 - 12 digit")
     private String employeePhoneNumber;
