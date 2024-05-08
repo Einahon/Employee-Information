@@ -1,6 +1,8 @@
 package com.eliehome.EmployeeInformation.error;
 
-public class EmployeeNotFoundException extends Exception {
+import org.springframework.web.bind.MethodArgumentNotValidException;
+
+public class EmployeeNotFoundException extends RuntimeException {
     public EmployeeNotFoundException() {
         super();
     }
