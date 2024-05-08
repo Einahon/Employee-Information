@@ -1,23 +1,21 @@
-package com.eliehome.EmployeeInformation.service.configuration;
+package com.eliehome.EmployeeInformation.service.impl;
 
 import com.eliehome.EmployeeInformation.error.EmployeeNotFoundException;
 import com.eliehome.EmployeeInformation.model.Employee;
 import com.eliehome.EmployeeInformation.repository.EmployeeRepository;
-import com.eliehome.EmployeeInformation.service.EmployeeService;
+import com.eliehome.EmployeeInformation.service.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService {
+public class EmployeeService implements IEmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
     @Override
-    public Employee saveEmployee(Employee employee) {
-        return    employeeRepository.save(employee);
-    }
+    public Employee saveEmployee(Employee employee) {return    employeeRepository.save(employee);}
     @Override
     public List<Employee> fetchEmployeeList() {
         return employeeRepository.findAll();
