@@ -4,9 +4,8 @@ import com.eliehome.EmployeeInformation.error.EmployeeNotFoundException;
 import com.eliehome.EmployeeInformation.model.Employee;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface EmployeeService {
+public interface IEmployeeService {
    public Employee saveEmployee(Employee employee);
 
   public List<Employee> fetchEmployeeList();
