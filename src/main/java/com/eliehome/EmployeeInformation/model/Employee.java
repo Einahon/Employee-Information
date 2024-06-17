@@ -19,16 +19,20 @@ import org.hibernate.validator.constraints.Length;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long employeeId;
+    private Long employee_id;
 
+    @NotBlank(message = "Please add First Name")
+    private String first_name;
 
-    @NotBlank(message = "Please add name")
-    private String employeeName;
+    @NotBlank(message = "Please add Last Name")
+    private String last_name;
+
+    @Length(max = 50, min = 1, message = "Must be of 1 - 25 characters")
+    private String job_title;
 
     @Length(max = 12, min = 8, message = "Must be of 8 - 12 digit")
-    private String employeePhoneNumber;
+    private String phoneNumber;
 
-    @Length(max = 25, min = 1, message = "Must be of 1 - 25 characters")
-    private String employeeDepartment;
+
 
 }
