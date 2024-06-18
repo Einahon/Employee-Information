@@ -10,12 +10,12 @@ public interface IEmployeeService {
 
   public List<Employee> fetchEmployeeList();
 
-   public Employee fetchEmployeeById(Long employeeId) throws EmployeeNotFoundException;
+   public Employee fetchEmployeeById(Long employee_id) throws EmployeeNotFoundException;
 
-   public void deleteEmployeeById(Long employeeId) throws EmployeeNotFoundException;
+   public void deleteEmployeeById(Long employee_id) throws EmployeeNotFoundException;
 
 
-   public Employee updateEmployee(Long employeeId, Employee employee) throws EmployeeNotFoundException;
+   public Employee updateEmployee(Long employee_id, Employee employee) throws EmployeeNotFoundException;
 
-   public Employee fetchByEmployeeName(String employeeName) throws EmployeeNotFoundException;
+   public Employee fetchEmployeeByTitle(String jobTitle);
 }
