@@ -21,43 +21,46 @@ public class EmployeeService implements IEmployeeService {
         return employeeRepository.findAll();
     }
     @Override
-    public Employee fetchEmployeeById(Long employeeId) throws EmployeeNotFoundException {
-        Optional<Employee> employee = employeeRepository.findById(employeeId);
+    public Employee fetchEmployeeById(Long employee_id) throws EmployeeNotFoundException {
+        Optional<Employee> employee = employeeRepository.findById(employee_id);
         if (!employee.isPresent()) {
             throw new EmployeeNotFoundException("Employee Not Available");
         }
         return employee.get();
     }
     @Override
-    public void deleteEmployeeById(Long employeeId) throws EmployeeNotFoundException {
-        if(!employeeRepository.existsById(employeeId)) {
-            throw new EmployeeNotFoundException("Employee not found with id: "+ employeeId);
+    public void deleteEmployeeById(Long employee_id) throws EmployeeNotFoundException {
+        if(!employeeRepository.existsById(employee_id)) {
+            throw new EmployeeNotFoundException("Employee not found with id: " + employee_id);
         }
-        employeeRepository.deleteById(employeeId);
+        employeeRepository.deleteById(employee_id);
     }
 
     @Override
-    public Employee updateEmployee(Long employeeId, Employee employee) throws EmployeeNotFoundException {
-        Employee employee1 = employeeRepository.findById(employeeId).orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: "+ employeeId));
+    public Employee updateEmployee(Long employee_id, Employee employee) throws EmployeeNotFoundException {
+        Employee employee1 = employeeRepository.findById(employee_id).orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: "+ employee_id));
 
-            if (employee.getEmployeeDepartment() != null) {
-                employee1.setEmployeeDepartment(employee.getEmployeeDepartment());
+            if (employee.getFirst_name() != null) {
+                employee1.setFirst_name(employee.getFirst_name());
             }
-            if (employee.getEmployeeName() != null) {
-                employee1.setEmployeeName(employee.getEmployeeName());
+            else
+                throw new EmployeeNotFoundException("Employee First Name must not be empty");
+            if (employee.getLast_name() != null) {
+                employee1.setLast_name(employee.getLast_name());
             } else
-                throw new EmployeeNotFoundException("Employee Name must not be empty");
-            if (employee.getEmployeePhoneNumber() != null) {
-                employee1.setEmployeePhoneNumber(employee.getEmployeePhoneNumber());
-            }
+                throw new EmployeeNotFoundException("Employee Last Name must not be empty");
+            if (employee.getPhone_number()!= null) {
+                employee1.setPhone_number(employee.getPhone_number());
+            }else{
+                throw new EmployeeNotFoundException("Employee Phone Number required");}
         return employeeRepository.save(employee1);
     }
 
     @Override
-    public Employee fetchByEmployeeName(String employeeName) throws EmployeeNotFoundException {
-        Employee employee = employeeRepository.findByEmployeeNameIgnoreCase(employeeName);
+    public Employee fetchEmployeeByTitle(String title) {
+        Employee employee = employeeRepository.findByTitle(title);
         if(employee == null){
-            throw new EmployeeNotFoundException("Employee Not Available");
+            throw new EmployeeNotFoundException("Employee Not Available by Job_Title "+ title);
         }
         return employee;
     }
