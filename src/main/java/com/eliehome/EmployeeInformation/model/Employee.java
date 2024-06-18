@@ -31,7 +31,7 @@ public class Employee {
     public String job_title;
 
     @Length(max = 12, min = 8, message = "Must be of 8 - 12 digit")
-    public String phoneNumber;
+    public String phone_number;
 
 
 
