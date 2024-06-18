@@ -46,11 +46,11 @@ public class EmployeeController {
         return employeeService.updateEmployee(employee_id, employee);
     }
 
-//    @GetMapping("/employees/lastName/{lastName}")
-//    public Employee fetchEmployeeByLastName(@PathVariable("lastName") String last_name) throws EmployeeNotFoundException {
-//        return employeeService.fetchEmployeeByLastName(last_name);
-//
-//    }
+    @GetMapping("/employees/jobTitle/{title}")
+    public Employee fetchEmployeeByTitle(@PathVariable("title") String title) throws EmployeeNotFoundException {
+        return employeeService.fetchEmployeeByTitle(title);
+
+    }
 
     }
 
