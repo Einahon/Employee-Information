@@ -31,25 +31,26 @@ public class EmployeeController {
         return employeeService.fetchEmployeeList();
     }
     @GetMapping("/employees/{id}")
-    public Employee fetchEmployeeById(@PathVariable("id") Long employeeId) throws EmployeeNotFoundException {
+    public Employee fetchEmployeeById(@PathVariable("id") Long employee_id) throws EmployeeNotFoundException {
         LOGGER.info("Inside fetchEmployeeById of EmployeeController ");
-            return employeeService.fetchEmployeeById(employeeId);
+            return employeeService.fetchEmployeeById(employee_id);
     }
     @DeleteMapping("/employees/{id}")
-    public String deleteEmployeeById(@PathVariable("id") Long employeeId) throws EmployeeNotFoundException {
+    public String deleteEmployeeById(@PathVariable("id") Long employee_id) throws EmployeeNotFoundException {
         LOGGER.info("Inside deleteEmployeeById of EmployeeController ");
-         employeeService.deleteEmployeeById(employeeId);
+         employeeService.deleteEmployeeById(employee_id);
          return "Employee Deleted Successfully!!";
     }
     @PutMapping("/employees/{id}")
-    public Employee updateEmployee(@PathVariable("id") Long employeeId,@Validated @RequestBody Employee employee) throws EmployeeNotFoundException {
-        return employeeService.updateEmployee(employeeId, employee);
+    public Employee updateEmployee(@PathVariable("id") Long employee_id,@Validated @RequestBody Employee employee) throws EmployeeNotFoundException {
+        return employeeService.updateEmployee(employee_id, employee);
     }
-    @GetMapping("/employees/name/{name}")
-    public Employee fetchByEmployeeName(@PathVariable("name") String employeeName) throws EmployeeNotFoundException {
-        return employeeService.fetchByEmployeeName(employeeName);
 
-    }
+//    @GetMapping("/employees/lastName/{lastName}")
+//    public Employee fetchEmployeeByLastName(@PathVariable("lastName") String last_name) throws EmployeeNotFoundException {
+//        return employeeService.fetchEmployeeByLastName(last_name);
+//
+//    }
 
     }
 
