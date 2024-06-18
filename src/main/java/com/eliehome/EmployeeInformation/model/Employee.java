@@ -28,7 +28,7 @@ public class Employee {
     public String last_name;
 
     @Length(max = 50, min = 1, message = "Must be of 1 - 25 characters")
-    public String job_title;
+    public String title;
 
     @Length(max = 12, min = 8, message = "Must be of 8 - 12 digit")
     public String phone_number;
