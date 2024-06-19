@@ -53,6 +53,11 @@ public class EmployeeService implements IEmployeeService {
                 employee1.setPhone_number(employee.getPhone_number());
             }else{
                 throw new EmployeeNotFoundException("Employee Phone Number required");}
+            if(employee.getTitle() != null){
+                employee1.setTitle(employee.getTitle());
+            }else {
+                throw new EmployeeNotFoundException("Employee with this job title not found" );
+            }
         return employeeRepository.save(employee1);
     }
 
