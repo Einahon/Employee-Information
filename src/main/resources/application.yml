@@ -2,8 +2,8 @@ server:
   port: 8082
 spring:
   datasource:
-    password: password
-    url: jdbc:mysql://localhost:3306/HR-Department
+    password: Zion2024
+    url: jdbc:mysql://localhost:3306/Employee
     username: root
   jpa:
     hibernate:

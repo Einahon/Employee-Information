@@ -16,10 +16,12 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public Employee saveEmployee(Employee employee) {return    employeeRepository.save(employee);}
+
     @Override
     public List<Employee> fetchEmployeeList() {
         return employeeRepository.findAll();
     }
+
     @Override
     public Employee fetchEmployeeById(Long employee_id) throws EmployeeNotFoundException {
         Optional<Employee> employee = employeeRepository.findById(employee_id);
